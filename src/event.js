@@ -20,7 +20,18 @@ input.addEventListener('keypress', e => {
 })
 //keydown
 //keypress
-
 //input/change
 //keyup
 
+
+
+const body = document.querySelector('body');
+body.addEventListener('keydown', e => {
+    if (e.key === 'p' && e.ctrlKey) {
+        e.preventDefault();
+    }
+})
+
+window.addEventListener('contextmenu', e => {
+    e.preventDefault();
+})
