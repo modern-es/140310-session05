@@ -12,6 +12,7 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
+    "@picocss/pico": "^2.0.6",
     "animate.css": "^4.1.1",
     "canvas-confetti": "^1.9.3"
   }
