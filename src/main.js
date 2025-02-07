@@ -1,5 +1,7 @@
 import '@picocss/pico/css/pico.min.css'
 import { qs } from './utils/dom'
+import { api } from './api';
+
 
 //CORS
 /*
@@ -18,10 +20,15 @@ import { qs } from './utils/dom'
 
 
 async function loadStudents() {
-    const resp = await fetch('http://127.0.0.1:8090' + '/api/collections/students/records', {
-        method: 'GET'
-    });
-    const data = await resp.json();
+    // const resp = await fetch('http://127.0.0.1:8090' + '/api/collections/students/records', {
+    //     method: 'GET'
+    // });
+    // const data = await resp.json();
+
+
+    const data = (await api.get('/api/collections/students/records')).data
+
+
     const tbody = qs('tbody');
     //Tamrin: handlebars
     let result = '';
@@ -41,22 +48,24 @@ async function loadStudents() {
 }
 
 globalThis.toggleStudent = async (id, active) => {
-    await fetch('http://127.0.0.1:8090' + '/api/collections/students/records/' + id, {
-        method: 'PATCH',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            isActive: !active
-        })
-    });
+    await api.patch('/api/collections/students/records/' + id, { isActive: !active });
+    // await fetch('http://127.0.0.1:8090' + '/api/collections/students/records/' + id, {
+    //     method: 'PATCH',
+    //     headers: {
+    //         'content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         isActive: !active
+    //     })
+    // });
     loadStudents();
 }
 globalThis.deleteStudent = async (id) => {
     if (confirm('are you sure?')) {
-        await fetch('http://127.0.0.1:8090' + '/api/collections/students/records/' + id, {
-            method: 'DELETE'
-        });
+        await api.delete('/api/collections/students/records/' + id);
+        // await fetch('http://127.0.0.1:8090' + '/api/collections/students/records/' + id, {
+        //     method: 'DELETE'
+        // });
         loadStudents();
     }
 }
@@ -64,17 +73,20 @@ globalThis.deleteStudent = async (id) => {
 loadStudents();
 
 qs('#addStudent').addEventListener('click', async e => {
-    const resp = await fetch('http://127.0.0.1:8090' + '/api/collections/students/records', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            firstName: 'Siavash',
-            lastName: 'Nemati',
-            isActive: true
-        })
-    });
+    const data = {
+        firstName: 'Siavash',
+        lastName: 'Nemati',
+        isActive: true
+    };
+
+    await api.post('/api/collections/students/records', data);
+    // const resp = await fetch('http://127.0.0.1:8090' + '/api/collections/students/records', {
+    //     method: 'POST',
+    //     headers: {
+    //         'content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(data)
+    // });
 
     loadStudents();
 })
