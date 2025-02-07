@@ -6,6 +6,31 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
+  <style>
+    .circle {
+      display: flex;
+      border-radius: 50%;
+      margin: auto;
+    }
+
+    .c1 {
+      background-color: greenyellow;
+      width: 500px;
+      height: 500px;
+    }
+
+    .c2 {
+      background-color: white;
+      width: 350px;
+      height: 350px;
+    }
+
+    .c3 {
+      background-color: crimson;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,8 +38,18 @@
     <button>Click 🎉</button>
     <input type="text">
   </div>
+  <hr>
+  <div>
+    <div class="circle c1 animate__animated animate__infinite	">
+      <div class="circle c2 animate__animated animate__infinite">
+        <div class="circle c3 animate__animated animate__infinite"></div>
+      </div>
+    </div>
+  </div>
+  </div>
   <div id="app"></div>
   <script type="module" src="/src/event.js"></script>
+  <script type="module" src="/src/bubble.js"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 

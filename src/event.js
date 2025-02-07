@@ -32,6 +32,6 @@ body.addEventListener('keydown', e => {
     }
 })
 
-window.addEventListener('contextmenu', e => {
-    e.preventDefault();
-})
+// window.addEventListener('contextmenu', e => {
+//     e.preventDefault();
+// })
