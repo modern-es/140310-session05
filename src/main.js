@@ -19,6 +19,19 @@ import "toastify-js/src/toastify.css"
  */
 
 
+qs("#avatarInput").addEventListener('change', e => {
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.onload = event => {
+        qs('#preview').setAttribute('src', event.target.result)
+    }
+
+    fileReader.readAsDataURL(file);
+
+    // fileReader.readAsText("c:\\windows\\xyz.txt")
+
+})
+
 async function loadStudents() {
     // const resp = await fetch('http://127.0.0.1:8090' + '/api/collections/students/records', {
     //     method: 'GET'
@@ -38,6 +51,7 @@ async function loadStudents() {
             <td>${item.firstName}</td>
             <td>${item.lastName}</td>
             <td>${item.isActive}</td>
+            <td><img src="${item.Avatar}"></td>
             <td>edit, 
                 <button onClick="deleteStudent('${item.id}')">❌</button>
                 <button onClick="toggleStudent('${item.id}', ${item.isActive})">☀️</button>
@@ -80,7 +94,8 @@ qs('#addStudent').addEventListener('click', async e => {
     const data = {
         firstName: 'Siavash',
         lastName: 'Nemati',
-        isActive: true
+        isActive: true,
+        Avatar: qs('#preview').getAttribute('src')
     };
 
     await api.post('/api/collections/students/records', data);
