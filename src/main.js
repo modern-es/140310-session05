@@ -1,7 +1,7 @@
 import '@picocss/pico/css/pico.min.css'
 import { qs } from './utils/dom'
 import { api } from './api';
-
+import "toastify-js/src/toastify.css"
 
 //CORS
 /*
@@ -49,6 +49,9 @@ async function loadStudents() {
 
 globalThis.toggleStudent = async (id, active) => {
     await api.patch('/api/collections/students/records/' + id, { isActive: !active });
+
+
+
     // await fetch('http://127.0.0.1:8090' + '/api/collections/students/records/' + id, {
     //     method: 'PATCH',
     //     headers: {
@@ -72,6 +75,7 @@ globalThis.deleteStudent = async (id) => {
 
 loadStudents();
 
+
 qs('#addStudent').addEventListener('click', async e => {
     const data = {
         firstName: 'Siavash',
@@ -87,7 +91,6 @@ qs('#addStudent').addEventListener('click', async e => {
     //     },
     //     body: JSON.stringify(data)
     // });
-
     loadStudents();
 })
 

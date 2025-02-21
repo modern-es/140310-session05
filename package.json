@@ -15,6 +15,7 @@
     "@picocss/pico": "^2.0.6",
     "animate.css": "^4.1.1",
     "axios": "^1.7.9",
-    "canvas-confetti": "^1.9.3"
+    "canvas-confetti": "^1.9.3",
+    "toastify-js": "^1.12.0"
   }
 }
